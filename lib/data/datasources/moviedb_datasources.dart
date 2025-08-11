@@ -1,5 +1,6 @@
 import 'package:cinemapedia/config/constants/environment.dart';
 import 'package:cinemapedia/data/mappers/movie_mapper.dart';
+import 'package:cinemapedia/data/models/moviedb/movie_details.dart';
 import 'package:cinemapedia/data/models/moviedb/moviedb_response.dart';
 import 'package:cinemapedia/domain/datasources/movies_datasource.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
@@ -16,9 +17,8 @@ class MoviedbDatasources extends MoviesDatasource {
     ),
   );
 
-  List<Movie> _jsonToMovie(Map<String,dynamic> json){
-
-        final movieDBResponse = MovieDbResponse.fromJson(json);
+  List<Movie> _jsonToMovie(Map<String, dynamic> json) {
+    final movieDBResponse = MovieDbResponse.fromJson(json);
 
     final List<Movie> movies = movieDBResponse.results
         .where((moviedb) => moviedb.posterPath != 'no-poster')
@@ -26,7 +26,6 @@ class MoviedbDatasources extends MoviesDatasource {
         .toList();
 
     return movies;
-
   }
 
   @override
@@ -49,7 +48,7 @@ class MoviedbDatasources extends MoviesDatasource {
     return _jsonToMovie(response.data);
   }
 
-    @override
+  @override
   Future<List<Movie>> getUpcoming({int page = 1}) async {
     final response = await dio.get(
       '/movie/upcoming',
@@ -59,7 +58,7 @@ class MoviedbDatasources extends MoviesDatasource {
     return _jsonToMovie(response.data);
   }
 
-      @override
+  @override
   Future<List<Movie>> getTopRated({int page = 1}) async {
     final response = await dio.get(
       '/movie/top_rated',
@@ -67,5 +66,15 @@ class MoviedbDatasources extends MoviesDatasource {
     );
 
     return _jsonToMovie(response.data);
+  }
+
+  @override
+  Future<Movie> getMovieById(String id) async {
+    final response = await dio.get('/movie/$id');
+    if(response.statusCode != 200) throw Exception('Movie with id: $id not found');
+
+    final movieDetails = MovieDetails.fromJson(response.data);
+    final Movie movie = MovieMapper.movieDetailsToEntity(movieDetails);
+    return movie;
   }
 }
