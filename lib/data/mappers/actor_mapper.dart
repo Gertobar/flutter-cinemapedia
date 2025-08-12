@@ -8,7 +8,7 @@ class ActorMapper {
     name: cast.name, 
     profilePath: cast.profilePath != null
         ? 'https://image.tmdb.org/t/p/w500${cast.profilePath}'
-    : 'https://www.pngitem.com/pimgs/m/24-248631_blue-profile-logo-png-transparent-png.png',
+    : 'https://i1.wp.com/images.binaryfortress.com/General/UnknownUser1024.png?ssl=1',
      character: cast.character
      );
 }

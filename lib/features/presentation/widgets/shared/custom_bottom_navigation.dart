@@ -8,22 +8,18 @@ class CustomBottomNavigation extends StatelessWidget {
     return BottomNavigationBar(
       elevation: 0,
       items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home_max),
-          label: 'Home'
-          ),
+        BottomNavigationBarItem(icon: Icon(Icons.home_max), label: 'Home'),
 
         BottomNavigationBarItem(
           icon: Icon(Icons.label_outline),
-          label: 'category'
-          ),
+          label: 'category',
+        ),
 
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite_outline),
-          label: 'favorites'
-          ),
-
-      ]
-      );
+          label: 'favorites',
+        ),
+      ],
+    );
   }
 }
