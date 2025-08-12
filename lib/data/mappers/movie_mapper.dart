@@ -1,3 +1,4 @@
+import 'package:cinemapedia/data/models/moviedb/movie_details.dart';
 import 'package:cinemapedia/data/models/moviedb/movie_moviedb.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 
@@ -14,8 +15,29 @@ class MovieMapper {
     overview: moviedb.overview,
     popularity: moviedb.popularity,
     posterPath: moviedb.posterPath  != ''  
+    ? 'https://image.tmdb.org/t/p/w500${moviedb.posterPath}'
+    : 'https://www.movienewsletters.net/photos/000000H1.jpg',
+    releaseDate: moviedb.releaseDate != null ? moviedb.releaseDate! : DateTime.now(),
+    title: moviedb.title,
+    video: moviedb.video,
+    voteAverage: moviedb.voteAverage,
+    voteCount: moviedb.voteCount,
+  );
+
+  static Movie movieDetailsToEntity(MovieDetails moviedb) => Movie(
+    adult: moviedb.adult,
+    backdropPath: moviedb.backdropPath != ''  
     ? 'https://image.tmdb.org/t/p/w500${moviedb.backdropPath}'
-    : 'no-poster',
+    : 'https://static.vecteezy.com/system/resources/previews/008/255/803/non_2x/page-not-found-error-404-system-updates-uploading-computing-operation-installation-programs-system-maintenance-a-hand-drawn-layout-template-of-a-broken-robot-illustration-vector.jpg',
+    genreIds: moviedb.genres.map((e) => e.name,).toList(),
+    id: moviedb.id,
+    originalLanguage: moviedb.originalLanguage,
+    originalTitle: moviedb.originalTitle,
+    overview: moviedb.overview,
+    popularity: moviedb.popularity,
+    posterPath: moviedb.posterPath  != ''  
+    ? 'https://image.tmdb.org/t/p/w500${moviedb.posterPath}'
+    : 'https://www.movienewsletters.net/photos/000000H1.jpg',
     releaseDate: moviedb.releaseDate,
     title: moviedb.title,
     video: moviedb.video,
