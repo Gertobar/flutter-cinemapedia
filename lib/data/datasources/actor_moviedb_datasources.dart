@@ -1,7 +1,7 @@
 import 'package:cinemapedia/data/datasources/moviedb_datasources.dart';
 import 'package:cinemapedia/data/mappers/actor_mapper.dart';
 import 'package:cinemapedia/data/models/moviedb/cast_response.dart';
-import 'package:cinemapedia/domain/datasources/actors_datasousce.dart';
+import 'package:cinemapedia/domain/datasources/actors_datasource.dart';
 import 'package:cinemapedia/domain/entities/actor.dart';
 
 class ActorMoviedbDatasources extends ActorsDatasousce {
